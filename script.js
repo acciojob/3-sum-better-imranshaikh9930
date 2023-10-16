@@ -1,5 +1,7 @@
 function threeSum(arr, target) {
 // write your code here
+
+arr.sort(arr);
 	let resSum = arr[0]+arr[1]+arr[2];
 	let minDiff = Number.MAX_VALUE;
 
