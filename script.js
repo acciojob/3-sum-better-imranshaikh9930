@@ -1,37 +1,32 @@
 function threeSum(arr, target) {
 // write your code here
+   arr.sort((a, b) => a - b);
 
-arr.sort(arr);
-	let resSum = arr[0]+arr[1]+arr[2];
-	let minDiff = Number.MAX_VALUE;
+    let closestSum = arr[0] + arr[1] + arr[2];
+    let minDiff = Math.abs(target - closestSum);
 
-	for(let i = 0 ; i < arr.length-2;i++){
+    for (let i = 0; i < arr.length - 2; i++) {
+        let left = i + 1;
+        let right = arr.length - 1;
 
-		let left  = i+1;
-		let right  = arr.length-1;
+        while (left < right) {
+            let sum = arr[i] + arr[left] + arr[right];
+            let diff = Math.abs(target - sum);
 
-		while(left < right){
+            if (diff < minDiff) {
+                minDiff = diff;
+                closestSum = sum;
+            }
 
-			let sum = arr[i] + arr[left] + arr[right];
+            if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+    }
 
-			if(sum === target){
-				return target;
-			}
-			else if(sum < target){
-				left++;
-			}else{
-				right--;
-			}
-
-			let diffTarget = Math.abs(resSum - sum);
-			if(diffTarget < minDiff){
-				resSum = sum;
-				minDiff = diffTarget;
-			}
-			
-		}
-	}
-	return resSum;
+    return closestSum;
   
 }
 
